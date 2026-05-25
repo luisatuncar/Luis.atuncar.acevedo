@@ -1,0 +1,140 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOKkWYNiM1Nqld3xNlJlAUx",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/luisatuncar/Luis.atuncar.acevedo/blob/main/EJERCICIO%202%20(1.1)\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VGDNdb4_hFvl",
+        "outputId": "b4240d74-6366-4d06-9fb5-84b396c4e6ab"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "V(41.0 kHz) = 0.795 V\n",
+            "|Z|(41.0 kHz) = 146.29 ohms\n",
+            "V(73.0 kHz) = 0.344 V\n",
+            "|Z|(73.0 kHz) = 203.59 ohms\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Interpolación de Lagrange de segundo grado\n",
+        "# Ensayo de telemetría biomédica\n",
+        "\n",
+        "def lagrange(x, puntos):\n",
+        "    \"\"\"\n",
+        "    x       -> valor a interpolar\n",
+        "    puntos  -> lista de tuplas (xi, yi)\n",
+        "    \"\"\"\n",
+        "\n",
+        "    n = len(puntos)\n",
+        "    resultado = 0\n",
+        "\n",
+        "    for i in range(n):\n",
+        "        xi, yi = puntos[i]\n",
+        "\n",
+        "        Li = 1\n",
+        "\n",
+        "        for j in range(n):\n",
+        "            if i != j:\n",
+        "                xj, yj = puntos[j]\n",
+        "                Li *= (x - xj) / (xi - xj)\n",
+        "\n",
+        "        resultado += yi * Li\n",
+        "\n",
+        "    return resultado\n",
+        "\n",
+        "\n",
+        "# =====================================================\n",
+        "# 1) V(41.0 kHz)\n",
+        "# =====================================================\n",
+        "\n",
+        "puntos_V41 = [\n",
+        "    (37.5, 1.048),\n",
+        "    (40.0, 0.866),\n",
+        "    (42.5, 0.689)\n",
+        "]\n",
+        "\n",
+        "V41 = lagrange(41.0, puntos_V41)\n",
+        "\n",
+        "print(\"V(41.0 kHz) =\", round(V41, 3), \"V\")\n",
+        "\n",
+        "\n",
+        "# =====================================================\n",
+        "# 2) |Z|(41.0 kHz)\n",
+        "# =====================================================\n",
+        "\n",
+        "puntos_Z41 = [\n",
+        "    (37.5, 145.2),\n",
+        "    (40.0, 145.8),\n",
+        "    (42.5, 147.3)\n",
+        "]\n",
+        "\n",
+        "Z41 = lagrange(41.0, puntos_Z41)\n",
+        "\n",
+        "print(\"|Z|(41.0 kHz) =\", round(Z41, 2), \"ohms\")\n",
+        "\n",
+        "\n",
+        "# =====================================================\n",
+        "# 3) V(73.0 kHz)\n",
+        "# =====================================================\n",
+        "\n",
+        "puntos_V73 = [\n",
+        "    (70.0, 0.197),\n",
+        "    (72.5, 0.318),\n",
+        "    (75.0, 0.452)\n",
+        "]\n",
+        "\n",
+        "V73 = lagrange(73.0, puntos_V73)\n",
+        "\n",
+        "print(\"V(73.0 kHz) =\", round(V73, 3), \"V\")\n",
+        "\n",
+        "\n",
+        "# =====================================================\n",
+        "# 4) |Z|(73.0 kHz)\n",
+        "# =====================================================\n",
+        "\n",
+        "puntos_Z73 = [\n",
+        "    (70.0, 200.1),\n",
+        "    (72.5, 203.1),\n",
+        "    (75.0, 205.2)\n",
+        "]\n",
+        "\n",
+        "Z73 = lagrange(73.0, puntos_Z73)\n",
+        "\n",
+        "print(\"|Z|(73.0 kHz) =\", round(Z73, 2), \"ohms\")"
+      ]
+    }
+  ]
+}
