@@ -1,0 +1,95 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPE8nColZ3SFmhTSr9Llhuf",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/luisatuncar/Luis.atuncar.acevedo/blob/main/EJERCICIO%202%20(2.2)\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ==========================================================\n",
+        "# DERIVACIÓN NUMÉRICA\n",
+        "# Fórmula progresiva de orden 2\n",
+        "# dV/df en f = 10.0 kHz\n",
+        "# ==========================================================\n",
+        "\n",
+        "# Datos de la tabla\n",
+        "f0 = 10.0\n",
+        "f1 = 12.5\n",
+        "f2 = 15.0\n",
+        "\n",
+        "V0 = 0.842\n",
+        "V1 = 0.911\n",
+        "V2 = 0.986\n",
+        "\n",
+        "# Paso uniforme\n",
+        "h = 2.5  # kHz\n",
+        "\n",
+        "# ==========================================================\n",
+        "# FÓRMULA PROGRESIVA DE ORDEN 2\n",
+        "#\n",
+        "# f'(x0) ≈ [-3f(x0) + 4f(x1) - f(x2)] / (2h)\n",
+        "# ==========================================================\n",
+        "\n",
+        "dVdf = (-3*V0 + 4*V1 - V2) / (2*h)\n",
+        "\n",
+        "# ==========================================================\n",
+        "# RESULTADO\n",
+        "# ==========================================================\n",
+        "\n",
+        "print(\"======================================\")\n",
+        "print(\" DERIVACIÓN NUMÉRICA\")\n",
+        "print(\" Fórmula progresiva de orden 2\")\n",
+        "print(\"======================================\\n\")\n",
+        "\n",
+        "print(\"f = 10.0 kHz\")\n",
+        "print(\"dV/df =\", round(dVdf, 5), \"V/kHz\")"
+      ],
+      "metadata": {
+        "id": "60_mfnDWqU_T",
+        "outputId": "f4de8561-520a-4864-a229-6b0bda60f3ef",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "======================================\n",
+            " DERIVACIÓN NUMÉRICA\n",
+            " Fórmula progresiva de orden 2\n",
+            "======================================\n",
+            "\n",
+            "f = 10.0 kHz\n",
+            "dV/df = 0.0264 V/kHz\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
